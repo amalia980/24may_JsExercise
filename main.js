@@ -59,10 +59,26 @@ class Cats {
 }
 
 
-function getCatPics() {
-    fetch("https://api.thecatapi.com/v1/images/search")
-    .then(response => response.json())
-    .then(url => console.log(url));
+    //function getImages(){
 
-    const theCats = new Cats();
-}
+    const fetch = require("node-fetch");
+
+    fetch("https://api.thecatapi.com/v1/images/search")
+    .then(response => response.json()
+    .then(data => {
+        
+        const array = data[0];
+
+        const theCats = new Cats(
+            array.breeds,
+            array.id,
+            array.url,
+            array.width,
+            array.height
+        );
+        console.log(theCats);
+    }));
+
+
+    
+  
